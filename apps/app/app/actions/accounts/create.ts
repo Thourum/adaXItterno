@@ -35,6 +35,14 @@ export const createAccount = async (
       throw new Error("Profile not found. Please complete onboarding first.");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Validate transferToId if action is TRANSFER
     if (input.actionOnDeath === "TRANSFER" && input.transferToId) {
       const contact = await database.trustedContact.findUnique({

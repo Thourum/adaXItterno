@@ -35,6 +35,14 @@ export const grantDocumentAccess = async (
       throw new Error("Profile not found");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Verify document ownership
     const document = await database.document.findUnique({
       where: { id: input.documentId, userId: profile.id },
@@ -85,6 +93,14 @@ export const grantFolderAccess = async (
       throw new Error("Profile not found");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Verify folder ownership
     const folder = await database.mediaFolder.findUnique({
       where: { id: input.folderId, userId: profile.id },
@@ -133,6 +149,14 @@ export const grantAccountAccess = async (
 
     if (!profile) {
       throw new Error("Profile not found");
+    }
+
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
     }
 
     // Verify account ownership

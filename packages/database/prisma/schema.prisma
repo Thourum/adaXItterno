@@ -11,18 +11,27 @@ datasource db {
   relationMode = "prisma"
 }
 
+// User status for insurance sync and death trigger
+enum UserStatus {
+  ACTIVE // Normal user
+  INACTIVE // Disabled by insurance (cannot log in)
+  DECEASED // Death triggered (data locked)
+}
+
 // User profile extending Clerk user data
 model UserProfile {
-  id                 String    @id @default(cuid())
-  clerkUserId        String    @unique
+  id                 String     @id @default(cuid())
+  clerkUserId        String     @unique
   fullName           String
   dateOfBirth        DateTime?
   email              String
   phone              String?
   countryOfResidence String?
-  onboardingComplete Boolean   @default(false)
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  onboardingComplete Boolean    @default(false)
+  status             UserStatus @default(ACTIVE)
+  deceasedAt         DateTime? // When death was triggered
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
 
   trustedContacts TrustedContact[]
   digitalAccounts DigitalAccount[]
@@ -31,6 +40,7 @@ model UserProfile {
   mediaItems      MediaItem[]
 
   @@index([clerkUserId])
+  @@index([email])
 }
 
 // Trusted contacts who can access user's digital legacy
@@ -46,9 +56,10 @@ model TrustedContact {
   createdAt    DateTime         @default(now())
   updatedAt    DateTime         @updatedAt
 
-  documentAccess    DocumentAccess[]
-  mediaFolderAccess MediaFolderAccess[]
-  accountAccess     AccountAccess[]
+  documentAccess     DocumentAccess[]
+  mediaFolderAccess  MediaFolderAccess[]
+  accountAccess      AccountAccess[]
+  legacyAccessTokens LegacyAccessToken[]
 
   @@index([userId])
 }
@@ -194,4 +205,34 @@ model AccountAccess {
   @@unique([accountId, contactId])
   @@index([accountId])
   @@index([contactId])
+}
+
+// Pending invitations from insurance company
+model PendingInvitation {
+  id           String    @id @default(cuid())
+  email        String
+  name         String?
+  insuranceRef String? // Reference ID from insurance company
+  invitedAt    DateTime  @default(now())
+  acceptedAt   DateTime?
+  userId       String? // Linked when user completes signup
+
+  @@unique([email])
+  @@index([insuranceRef])
+}
+
+// Legacy access tokens for trusted contacts to view deceased user's data
+model LegacyAccessToken {
+  id         String         @id @default(cuid())
+  contactId  String
+  contact    TrustedContact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  token      String         @unique
+  userId     String // The deceased user's profile ID
+  createdAt  DateTime       @default(now())
+  expiresAt  DateTime? // Optional expiration
+  lastUsedAt DateTime?
+
+  @@index([token])
+  @@index([contactId])
+  @@index([userId])
 }

@@ -21,6 +21,14 @@ export const revokeDocumentAccess = async (
       throw new Error("Profile not found");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Verify document ownership
     const document = await database.document.findUnique({
       where: { id: documentId, userId: profile.id },
@@ -61,6 +69,14 @@ export const revokeFolderAccess = async (
 
     if (!profile) {
       throw new Error("Profile not found");
+    }
+
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
     }
 
     // Verify folder ownership
@@ -105,6 +121,14 @@ export const revokeAccountAccess = async (
       throw new Error("Profile not found");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Verify account ownership
     const account = await database.digitalAccount.findUnique({
       where: { id: accountId, userId: profile.id },
@@ -145,6 +169,14 @@ export const updateDocumentSharing = async (
 
     if (!profile) {
       throw new Error("Profile not found");
+    }
+
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
     }
 
     // Verify document ownership
@@ -193,6 +225,14 @@ export const updateFolderSharing = async (
 
     if (!profile) {
       throw new Error("Profile not found");
+    }
+
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
     }
 
     // Verify folder ownership

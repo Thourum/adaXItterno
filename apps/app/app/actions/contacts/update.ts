@@ -33,6 +33,14 @@ export const updateContact = async (
       throw new Error("Profile not found");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Verify ownership
     const existing = await database.trustedContact.findUnique({
       where: { id: input.id, userId: profile.id },

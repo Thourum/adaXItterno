@@ -24,6 +24,18 @@ export const updateProfile = async (
       throw new Error("Not authenticated");
     }
 
+    // Check if account is locked
+    const existingProfile = await database.userProfile.findUnique({
+      where: { clerkUserId: userId },
+    });
+
+    if (existingProfile?.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (existingProfile?.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     const profile = await database.userProfile.update({
       where: { clerkUserId: userId },
       data: input,
@@ -43,6 +55,18 @@ export const completeOnboarding = async (): Promise<
     const { userId } = await auth();
     if (!userId) {
       throw new Error("Not authenticated");
+    }
+
+    // Check if account is locked
+    const existingProfile = await database.userProfile.findUnique({
+      where: { clerkUserId: userId },
+    });
+
+    if (existingProfile?.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (existingProfile?.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
     }
 
     const profile = await database.userProfile.update({

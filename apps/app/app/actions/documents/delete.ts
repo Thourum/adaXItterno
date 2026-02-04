@@ -21,6 +21,14 @@ export const deleteDocument = async (
       throw new Error("Profile not found");
     }
 
+    // Check if account is locked
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     // Verify ownership and get file URL
     const existing = await database.document.findUnique({
       where: { id: documentId, userId: profile.id },

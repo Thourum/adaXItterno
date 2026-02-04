@@ -33,6 +33,14 @@ export const createDocument = async (
       throw new Error("Profile not found. Please complete onboarding first.");
     }
 
+    // Check if account is locked (deceased or inactive)
+    if (profile.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
+    }
+
     const document = await database.document.create({
       data: {
         userId: profile.id,
@@ -58,6 +66,17 @@ export const uploadDocumentFile = async (
     const { userId } = await auth();
     if (!userId) {
       throw new Error("Not authenticated");
+    }
+
+    // Check if account is locked
+    const profile = await database.userProfile.findUnique({
+      where: { clerkUserId: userId },
+    });
+    if (profile?.status === "DECEASED") {
+      throw new Error("This account has been locked. No modifications allowed.");
+    }
+    if (profile?.status === "INACTIVE") {
+      throw new Error("This account has been deactivated.");
     }
 
     const file = formData.get("file") as File;
