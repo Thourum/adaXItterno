@@ -7,7 +7,7 @@
     "typecheck": "tsc --noEmit --emitDeclarationOnly false"
   },
   "dependencies": {
-    "@t3-oss/env-nextjs": "^0.13.8",
+    "@t3-oss/env-nextjs": "^0.13.10",
     "@liveblocks/client": "^3.11.0",
     "@liveblocks/node": "^3.11.0",
     "@liveblocks/react": "^3.11.0",
