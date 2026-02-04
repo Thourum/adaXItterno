@@ -18,10 +18,10 @@ export const keys = () =>
       NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.string().startsWith("/"),
     },
     runtimeEnv: {
-      CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
-      CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET,
+      CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY || undefined,
+      CLERK_WEBHOOK_SECRET: process.env.CLERK_WEBHOOK_SECRET || undefined,
       NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
-        process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+        process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || undefined,
       NEXT_PUBLIC_CLERK_SIGN_IN_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL,
       NEXT_PUBLIC_CLERK_SIGN_UP_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL,
       NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL:
