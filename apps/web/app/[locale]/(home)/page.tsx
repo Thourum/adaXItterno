@@ -2,13 +2,14 @@ import { showBetaFeature } from "@repo/feature-flags";
 import { getDictionary } from "@repo/internationalization";
 import { createMetadata } from "@repo/seo/metadata";
 import type { Metadata } from "next";
-import { Cases } from "./components/cases";
-import { CTA } from "./components/cta";
-import { FAQ } from "./components/faq";
 import { Features } from "./components/features";
+import { FinalCta } from "./components/final-cta";
 import { Hero } from "./components/hero";
-import { Stats } from "./components/stats";
-import { Testimonials } from "./components/testimonials";
+import { HowItWorks } from "./components/how-it-works";
+import { ProblemSolution } from "./components/problem-solution";
+import { Testimonial } from "./components/testimonial";
+import { TrustBadges } from "./components/trust-badges";
+import { ValueProp } from "./components/value-prop";
 
 type HomeProps = {
   params: Promise<{
@@ -38,12 +39,13 @@ const Home = async ({ params }: HomeProps) => {
         </div>
       )}
       <Hero dictionary={dictionary} />
-      <Cases dictionary={dictionary} />
-      <Features dictionary={dictionary} />
-      <Stats dictionary={dictionary} />
-      <Testimonials dictionary={dictionary} />
-      <FAQ dictionary={dictionary} />
-      <CTA dictionary={dictionary} />
+      <ProblemSolution dictionary={dictionary} />
+      <HowItWorks dictionary={dictionary} />
+      <ValueProp />
+      <Features />
+      <Testimonial />
+      <TrustBadges />
+      <FinalCta />
     </>
   );
 };

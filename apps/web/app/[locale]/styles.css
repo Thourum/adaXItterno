@@ -1,5 +1,7 @@
 @import "@repo/design-system/styles/globals.css";
 
+/* Web app – theme comes from design system (Afterly brand). Shiki/code only below. */
+
 .shiki {
   background-color: var(--shiki-light-bg);
   color: var(--shiki-light);

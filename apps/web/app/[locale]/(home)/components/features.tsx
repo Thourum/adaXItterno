@@ -1,72 +1,66 @@
-import type { Dictionary } from "@repo/internationalization";
-import { User } from "lucide-react";
+import { Database, BookOpen, Shield, Users } from "lucide-react";
+import { mediaPath, MEDIA } from "../lib/media";
 
-type FeaturesProps = {
-  dictionary: Dictionary;
-};
+const FEATURES = [
+  {
+    icon: Database,
+    title: "Digital Asset Inventory",
+    description:
+      "Catalog everything from crypto wallets to photo libraries in one organized place.",
+  },
+  {
+    icon: Shield,
+    title: "Secure Vault Storage",
+    description:
+      "Store documents, passwords, and heartfelt letters with military-grade security.",
+  },
+  {
+    icon: BookOpen,
+    title: "Legacy Instructions",
+    description:
+      "Leave clear instructions for how you want your social media profiles handled.",
+  },
+  {
+    icon: Users,
+    title: "Trusted Contact Management",
+    description:
+      'Assign different "Deputies" for different parts of your estate easily.',
+  },
+];
 
-export const Features = ({ dictionary }: FeaturesProps) => (
-  <div className="w-full py-20 lg:py-40">
-    <div className="container mx-auto">
-      <div className="flex flex-col gap-10">
-        <div className="flex flex-col items-start gap-4">
-          <div className="flex flex-col gap-2">
-            <h2 className="max-w-xl text-left font-regular text-3xl tracking-tighter md:text-5xl">
-              {dictionary.web.home.features.title}
-            </h2>
-            <p className="max-w-xl text-left text-lg text-muted-foreground leading-relaxed tracking-tight lg:max-w-lg">
-              {dictionary.web.home.features.description}
+export const Features = () => (
+  <section className="relative overflow-hidden px-6 py-20 md:px-10 lg:py-28">
+    <div
+      className="absolute inset-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${mediaPath(MEDIA.featuresBg)})` }}
+      aria-hidden
+    />
+    <div
+      className="absolute inset-0 z-[1] bg-[var(--afterly-bg-warm)]/95"
+      aria-hidden
+    />
+    <div className="container relative z-[2] mx-auto">
+      <h2 className="mb-12 text-center text-3xl font-semibold text-[var(--afterly-text-dark)] md:text-4xl lg:text-5xl">
+        Everything You Need
+      </h2>
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {FEATURES.map((feature) => (
+          <div
+            key={feature.title}
+            className="flex h-[320px] flex-col items-center justify-center rounded-[var(--afterly-radius-card)] border border-black/5 bg-white p-8 text-center shadow-lg"
+          >
+            <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[var(--primary)]/10 text-[var(--primary)]">
+              <feature.icon className="h-8 w-8" />
+            </div>
+            <h3 className="mb-3 text-xl font-bold text-[var(--afterly-text-dark)]">
+              {feature.title}
+            </h3>
+            <p className="text-sm leading-relaxed text-[var(--afterly-text-gray)]">
+              {feature.description}
             </p>
           </div>
-        </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="flex aspect-square h-full flex-col justify-between rounded-md bg-muted p-6 lg:col-span-2 lg:aspect-auto">
-            <User className="h-8 w-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">
-                {dictionary.web.home.features.items[0].title}
-              </h3>
-              <p className="max-w-xs text-base text-muted-foreground">
-                {dictionary.web.home.features.items[0].description}
-              </p>
-            </div>
-          </div>
-          <div className="flex aspect-square flex-col justify-between rounded-md bg-muted p-6">
-            <User className="h-8 w-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">
-                {dictionary.web.home.features.items[1].title}
-              </h3>
-              <p className="max-w-xs text-base text-muted-foreground">
-                {dictionary.web.home.features.items[1].description}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex aspect-square flex-col justify-between rounded-md bg-muted p-6">
-            <User className="h-8 w-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">
-                {dictionary.web.home.features.items[2].title}
-              </h3>
-              <p className="max-w-xs text-base text-muted-foreground">
-                {dictionary.web.home.features.items[2].description}
-              </p>
-            </div>
-          </div>
-          <div className="flex aspect-square h-full flex-col justify-between rounded-md bg-muted p-6 lg:col-span-2 lg:aspect-auto">
-            <User className="h-8 w-8 stroke-1" />
-            <div className="flex flex-col">
-              <h3 className="text-xl tracking-tight">
-                {dictionary.web.home.features.items[3].title}
-              </h3>
-              <p className="max-w-xs text-base text-muted-foreground">
-                {dictionary.web.home.features.items[3].description}
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
-  </div>
+  </section>
 );

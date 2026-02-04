@@ -23,7 +23,35 @@
         "description": "In der heutigen schnelllebigen Welt verdient Ihr Unternehmen mehr als veraltete Handelssysteme. Unsere innovative Plattform optimiert die Abläufe, reduziert die Komplexität und hilft kleinen Unternehmen, in der modernen Wirtschaft erfolgreich zu sein."
       },
       "hero": {
-        "announcement": "Lesen Sie unseren neuesten Artikel"
+        "announcement": "Lesen Sie unseren neuesten Artikel",
+        "subline": "Partnering with insurers to help the insured plan, and us to deliver.",
+        "headline": "Peace of Mind for Your Digital Legacy",
+        "subheadline": "Decide what happens to your digital accounts and assets. Protect your family's access to what matters most."
+      },
+      "problemSolution": {
+        "tag": "The Problem",
+        "title": "What happens to your photos, emails, social media, and online accounts when you're gone?",
+        "description": "In today's digital world, our most precious memories and assets are stored online. Without a plan, they can be lost forever or locked away. Afterly helps you create a clear, secure plan, so your loved ones have the access and closure they need during difficult times."
+      },
+      "howItWorks": {
+        "sectionTag": "How It Works",
+        "sectionTitle": "Simple, Secure, and Supportive",
+        "title": "How It Works",
+        "description": "Insurance carriers offer their policyholders a way to record their digital legacy wishes. We are the execution layer that turns those wishes into action.",
+        "steps": [
+          {
+            "title": "Insurers enable registration",
+            "description": "Carriers integrate our capability so their insured can securely register what should happen to their digital accounts, data, and wishes."
+          },
+          {
+            "title": "Wishes are stored and verified",
+            "description": "Preferences are stored with the right legal and verification safeguards, and linked to the policyholder's relationship with the insurer."
+          },
+          {
+            "title": "We act when the time comes",
+            "description": "When we are notified that the insured has passed, we execute their registered wishes—account closure, data handover, memorialization—according to their instructions."
+          }
+        ]
       },
       "cases": {
         "title": "Erfolgsgeschichten aus aller Welt"

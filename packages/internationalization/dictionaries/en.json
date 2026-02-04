@@ -19,134 +19,162 @@
     },
     "home": {
       "meta": {
-        "title": "Transform Your Business Operations Today",
-        "description": "In today's fast-paced world, your business deserves better than outdated trading systems. Our innovative platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
+        "title": "Digital Legacy, Delivered—With Insurers and Families in Mind",
+        "description": "We partner with insurance companies so the insured can register their digital legacy wishes. When the time comes, we act on those wishes—securely and reliably."
       },
       "hero": {
-        "announcement": "Read our latest article"
+        "announcement": "Read our latest article",
+        "subline": "Partnering with insurers to help the insured plan, and us to deliver.",
+        "headline": "Peace of Mind for Your Digital Legacy",
+        "subheadline": "Decide what happens to your digital accounts and assets. Protect your family's access to what matters most."
+      },
+      "problemSolution": {
+        "tag": "The Problem",
+        "title": "What happens to your photos, emails, social media, and online accounts when you're gone?",
+        "description": "In today's digital world, our most precious memories and assets are stored online. Without a plan, they can be lost forever or locked away. Afterly helps you create a clear, secure plan, so your loved ones have the access and closure they need during difficult times."
+      },
+      "howItWorks": {
+        "sectionTag": "How It Works",
+        "sectionTitle": "Simple, Secure, and Supportive",
+        "title": "How It Works",
+        "description": "Insurance carriers offer their policyholders a way to record their digital legacy wishes. We are the execution layer that turns those wishes into action.",
+        "steps": [
+          {
+            "title": "Insurers enable registration",
+            "description": "Carriers integrate our capability so their insured can securely register what should happen to their digital accounts, data, and wishes."
+          },
+          {
+            "title": "Wishes are stored and verified",
+            "description": "Preferences are stored with the right legal and verification safeguards, and linked to the policyholder's relationship with the insurer."
+          },
+          {
+            "title": "We act when the time comes",
+            "description": "When we are notified that the insured has passed, we execute their registered wishes—account closure, data handover, memorialization—according to their instructions."
+          }
+        ]
       },
       "cases": {
-        "title": "Empowering Success Stories Across the Globe"
+        "title": "Trusted by Leading Insurers and Partners"
       },
       "features": {
-        "title": "Powerful Tools for Modern Business",
-        "description": "Discover how our cutting-edge features can revolutionize your daily operations.",
+        "title": "Why Insurers and Investors Care",
+        "description": "We close the gap between digital legacy intent and execution, creating value for carriers, policyholders, and families.",
         "items": [
           {
-            "title": "Streamlined Operations",
-            "description": "Our platform streamlines operations, reduces complexity, and helps small businesses thrive in the modern economy."
+            "title": "Differentiation for carriers",
+            "description": "Offer a clear, compliant way for the insured to register digital legacy wishes—increasing trust and policyholder value."
           },
           {
-            "title": "Real-Time Analytics",
-            "description": "Get instant insights into your business performance with comprehensive analytics and reporting tools."
+            "title": "Peace of mind for the insured",
+            "description": "Policyholders know their digital wishes will be carried out, with one place to register and one partner to execute."
           },
           {
-            "title": "Automated Workflows",
-            "description": "Save time and reduce errors with intelligent automation that handles repetitive tasks for you."
+            "title": "Execution you can rely on",
+            "description": "We handle the operational and technical complexity of carrying out digital legacy wishes at scale, with audit and compliance in mind."
           },
           {
-            "title": "Secure Transactions",
-            "description": "Rest easy knowing your business operations are protected by enterprise-grade security and encryption."
+            "title": "Scalable B2B model",
+            "description": "Our business is built on partnerships with insurers and institutions—recurring revenue, clear unit economics, and a large addressable market."
           }
         ]
       },
       "stats": {
-        "title": "Real Results, Real Impact",
-        "description": "Join thousands of businesses that have transformed their operations with our platform. Our solutions have helped companies reduce administrative overhead by 60% and increase trading efficiency by 45% on average.",
+        "title": "Built for Scale and Trust",
+        "description": "We are building the infrastructure that connects insurance, digital legacy registration, and execution—so every wish can be honored.",
         "items": [
           {
-            "title": "Monthly active users",
-            "metric": "100000",
-            "delta": "10",
+            "title": "Partner-ready",
+            "metric": "API-first",
+            "delta": "",
             "type": "unit"
           },
           {
-            "title": "Daily active users",
-            "metric": "10000",
-            "delta": "-5",
+            "title": "Compliance-focused",
+            "metric": "Audit trail",
+            "delta": "",
             "type": "unit"
           },
           {
-            "title": "Monthly recurring revenue",
-            "metric": "100000",
-            "delta": "20",
-            "type": "currency"
+            "title": "Carrier integration",
+            "metric": "B2B",
+            "delta": "",
+            "type": "unit"
           },
           {
-            "title": "Cost per acquisition",
-            "metric": "100",
-            "delta": "-10",
-            "type": "currency"
+            "title": "Execution layer",
+            "metric": "Secure",
+            "delta": "",
+            "type": "unit"
           }
         ]
       },
       "testimonials": {
-        "title": "Hear from Our Thriving Community",
+        "title": "Why Partners and Insurers Choose Us",
         "items": [
           {
-            "title": "Best decision",
-            "description": "Our goal was to streamline SMB trade, making it easier and faster than ever and we did it together.",
+            "title": "Clear value for policyholders",
+            "description": "Our insured want to know their digital footprint is in good hands. This partnership gives them one place to register their wishes and one team to execute them.",
             "author": {
-              "name": "Hayden Bleasel",
+              "name": "Insurance partner",
               "image": "https://github.com/haydenbleasel.png"
             }
           },
           {
-            "title": "Game changer",
-            "description": "This platform revolutionized how we handle our day-to-day operations. The efficiency gains have been remarkable.",
+            "title": "Execution we can trust",
+            "description": "We needed a partner that could handle the complexity of digital legacy at scale—verification, compliance, and reliable execution. This is it.",
             "author": {
-              "name": "Lee Robinson",
+              "name": "Institutional partner",
               "image": "https://github.com/leerob.png"
             }
           },
           {
-            "title": "Exceeded expectations",
-            "description": "Implementation was smooth and the results were immediate. Our team adapted quickly and productivity soared.",
+            "title": "Differentiation in the market",
+            "description": "Offering digital legacy registration and execution through our policies has become a real differentiator and builds long-term trust with families.",
             "author": {
-              "name": "shadcn",
+              "name": "Carrier lead",
               "image": "https://github.com/shadcn.png"
             }
           },
           {
-            "title": "Outstanding support",
-            "description": "Not only is the platform powerful, but the customer support team has been exceptional in helping us maximize its potential.",
+            "title": "One place to register, one place to act",
+            "description": "Families don't have to hunt across platforms. The insured register once with their insurer; when the time comes, one partner acts on their wishes.",
             "author": {
-              "name": "Pontus Abrahamsson",
+              "name": "Family office",
               "image": "https://github.com/pontusab.png"
             }
           }
         ]
       },
       "faq": {
-        "title": "Common Questions, Expert Answers",
-        "description": "Get quick answers to your most pressing questions about our platform. We've compiled everything you need to know about transforming your business operations and getting started with modern trading solutions.",
-        "cta": "Any questions? Reach out",
+        "title": "Questions from Insurers and Investors",
+        "description": "Answers to common questions about our model, our role in digital legacy, and how we work with insurance carriers.",
+        "cta": "Want to discuss a partnership? Get in touch",
         "items": [
           {
-            "question": "What is the platform?",
-            "answer": "The platform is a trading platform that allows you to trade with confidence."
+            "question": "What is digital legacy in this context?",
+            "answer": "Digital legacy is what happens to a person's online accounts, data, and digital wishes after they pass. We help the insured register those wishes (e.g. account closure, data handover, memorialization) and then execute them when the time comes."
           },
           {
-            "question": "How secure is the platform?",
-            "answer": "Our platform employs enterprise-grade security measures, including end-to-end encryption and multi-factor authentication, to ensure your trading activities remain completely secure."
+            "question": "How do insurance companies fit in?",
+            "answer": "Insurers help their insured by offering a trusted, integrated way to register digital legacy wishes—often as part of life or legacy planning. We provide the registration and execution capability so carriers can offer this without building it themselves."
           },
           {
-            "question": "What trading features are available?",
-            "answer": "The platform offers comprehensive trading tools including real-time market data, advanced charting, automated trading strategies, and detailed analytics to support informed decision-making."
+            "question": "What does 'we act upon that' mean?",
+            "answer": "When we are notified that the insured has passed (through agreed, verified channels), we carry out their registered wishes: closing or memorializing accounts, transferring data to designated beneficiaries, and following their instructions in a compliant, auditable way."
           },
           {
-            "question": "How does pricing work?",
-            "answer": "We offer flexible pricing tiers designed to scale with your business needs, from starter plans for individual traders to enterprise solutions for large organizations."
+            "question": "How is this relevant for investors?",
+            "answer": "We operate a B2B model with insurers and institutions. Recurring partnerships, a large addressable market of policyholders, and a clear execution layer for digital legacy create scalable, defensible value."
           },
           {
-            "question": "What kind of support do you provide?",
-            "answer": "Our dedicated support team is available 24/7 through multiple channels including live chat, email, and phone. We also provide extensive documentation and training resources."
+            "question": "How do you ensure security and compliance?",
+            "answer": "We use verification, audit trails, and compliance-by-design so that only authorized parties can trigger execution and every action is traceable. We work with carriers to align with their regulatory and privacy requirements."
           }
         ]
       },
       "cta": {
-        "title": "Start Your Business Transformation",
-        "description": "Join thousands of forward-thinking businesses who have already modernized their operations. Our platform offers the tools, support, and efficiency you need to succeed in today's competitive market. Get started in minutes."
+        "title": "Partner With Us—Insurers and Investors",
+        "description": "If you're an insurer looking to offer digital legacy registration to your insured, or an investor interested in how we turn registered wishes into execution at scale, we'd like to hear from you."
       }
     },
     "blog": {

@@ -11,8 +11,7 @@ import {
   NavigationMenuTrigger,
 } from "@repo/design-system/components/ui/navigation-menu";
 import type { Dictionary } from "@repo/internationalization";
-import { CommandIcon, Menu, MoveRight, X } from "lucide-react";
-import Image from "next/image";
+import { Menu, MoveRight, X } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { env } from "@/env";
@@ -110,22 +109,18 @@ export const Header = ({ dictionary }: HeaderProps) => {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex items-center gap-2 lg:justify-center">
-          <svg
-            className="-translate-y-[0.5px] h-[18px] w-[18px] fill-current"
-            fill="none"
-            height="22"
-            viewBox="0 0 235 203"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Vercel</title>
-            <path
-              d="M117.082 0L234.164 202.794H0L117.082 0Z"
-              fill="currentColor"
-            />
-          </svg>
-          <p className="whitespace-nowrap font-semibold">next-forge</p>
-        </div>
+        <Link
+          href="/"
+          className="flex min-h-20 items-center justify-center lg:justify-center hover:opacity-90 transition-opacity"
+          aria-label="Afterly – Home"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/afterly-logo.svg"
+            alt="Afterly"
+            className="h-14 w-auto object-contain sm:h-16 lg:h-[4.5rem]"
+          />
+        </Link>
         <div className="flex w-full justify-end gap-4">
           <Button asChild className="hidden md:inline" variant="ghost">
             <Link href="/contact">{dictionary.web.header.contact}</Link>

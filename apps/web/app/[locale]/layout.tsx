@@ -27,7 +27,7 @@ const RootLayout = async ({ children, params }: RootLayoutProperties) => {
       lang="en"
       suppressHydrationWarning
     >
-      <body>
+      <body className="bg-[var(--afterly-bg-warm)]">
         <AnalyticsProvider>
           <DesignSystemProvider>
             <Header dictionary={dictionary} />
