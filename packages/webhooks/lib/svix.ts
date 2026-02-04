@@ -3,7 +3,7 @@ import { auth } from "@repo/auth/server";
 import { Svix } from "svix";
 import { keys } from "../keys";
 
-const svixToken = keys().SVIX_TOKEN;
+const svixToken = keys().SVIX_TOKEN ?? "";
 
 export const send = async (eventType: string, payload: object) => {
   if (!svixToken) {

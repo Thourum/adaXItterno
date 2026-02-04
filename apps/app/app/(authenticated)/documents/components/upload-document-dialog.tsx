@@ -32,7 +32,7 @@ import type { TrustedContact } from "@repo/database";
 const formSchema = z.object({
   name: z.string().min(1, "Name is required"),
   description: z.string().optional(),
-  isWill: z.boolean().default(false),
+  isWill: z.boolean(),
 });
 
 type FormValues = z.infer<typeof formSchema>;

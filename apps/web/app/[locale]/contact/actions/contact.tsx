@@ -15,6 +15,10 @@ export const contact = async (
   error?: string;
 }> => {
   try {
+    if (!env.RESEND_FROM) {
+      throw new Error("RESEND_FROM environment variable is not configured");
+    }
+
     if (env.UPSTASH_REDIS_REST_URL && env.UPSTASH_REDIS_REST_TOKEN) {
       const rateLimiter = createRateLimiter({
         limiter: slidingWindow(1, "1d"),
