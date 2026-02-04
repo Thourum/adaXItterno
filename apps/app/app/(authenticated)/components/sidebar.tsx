@@ -1,6 +1,6 @@
 "use client";
 
-import { OrganizationSwitcher, UserButton } from "@repo/auth/client";
+import { UserButton } from "@repo/auth/client";
 import { ModeToggle } from "@repo/design-system/components/mode-toggle";
 import { Button } from "@repo/design-system/components/ui/button";
 import {
@@ -8,13 +8,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@repo/design-system/components/ui/collapsible";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@repo/design-system/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -36,23 +29,18 @@ import {
 import { cn } from "@repo/design-system/lib/utils";
 import { NotificationsTrigger } from "@repo/notifications/components/trigger";
 import {
-  AnchorIcon,
-  BookOpenIcon,
-  BotIcon,
   ChevronRightIcon,
-  FolderIcon,
-  FrameIcon,
+  FileTextIcon,
+  ImageIcon,
+  KeyIcon,
+  LayoutDashboardIcon,
   LifeBuoyIcon,
-  MapIcon,
-  MoreHorizontalIcon,
-  PieChartIcon,
-  SendIcon,
   Settings2Icon,
-  ShareIcon,
-  SquareTerminalIcon,
-  Trash2Icon,
+  ShieldIcon,
+  UsersIcon,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { Search } from "./search";
 
@@ -60,137 +48,63 @@ type GlobalSidebarProperties = {
   readonly children: ReactNode;
 };
 
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+const navMain = [
+  {
+    title: "Dashboard",
+    url: "/",
+    icon: LayoutDashboardIcon,
   },
-  navMain: [
-    {
-      title: "Playground",
-      url: "#",
-      icon: SquareTerminalIcon,
-      isActive: true,
-      items: [
-        {
-          title: "History",
-          url: "#",
-        },
-        {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Models",
-      url: "#",
-      icon: BotIcon,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpenIcon,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
-      icon: Settings2Icon,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
-  navSecondary: [
-    {
-      title: "Webhooks",
-      url: "/webhooks",
-      icon: AnchorIcon,
-    },
-    {
-      title: "Support",
-      url: "#",
-      icon: LifeBuoyIcon,
-    },
-    {
-      title: "Feedback",
-      url: "#",
-      icon: SendIcon,
-    },
-  ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: FrameIcon,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChartIcon,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: MapIcon,
-    },
-  ],
-};
+  {
+    title: "Digital Accounts",
+    url: "/accounts",
+    icon: KeyIcon,
+    items: [
+      { title: "Social Media", url: "/accounts/social-media" },
+      { title: "Email & Communication", url: "/accounts/email-communication" },
+      { title: "Financial", url: "/accounts/financial" },
+      { title: "Crypto", url: "/accounts/crypto" },
+      { title: "Subscriptions", url: "/accounts/subscriptions" },
+      { title: "Other", url: "/accounts/other" },
+    ],
+  },
+  {
+    title: "Documents",
+    url: "/documents",
+    icon: FileTextIcon,
+  },
+  {
+    title: "Pictures & Videos",
+    url: "/media",
+    icon: ImageIcon,
+  },
+  {
+    title: "Trusted Contacts",
+    url: "/contacts",
+    icon: UsersIcon,
+  },
+];
+
+const navSecondary = [
+  {
+    title: "Settings",
+    url: "/settings",
+    icon: Settings2Icon,
+  },
+  {
+    title: "Support",
+    url: "#",
+    icon: LifeBuoyIcon,
+  },
+];
 
 export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
   const sidebar = useSidebar();
+  const pathname = usePathname();
+
+  const isActive = (url: string) => {
+    if (url === "/") return pathname === "/";
+    return pathname.startsWith(url);
+  };
 
   return (
     <>
@@ -200,14 +114,12 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
             <SidebarMenuItem>
               <div
                 className={cn(
-                  "h-[36px] overflow-hidden transition-all [&>div]:w-full",
+                  "flex h-[36px] items-center gap-2 overflow-hidden px-2 font-semibold transition-all",
                   sidebar.open ? "" : "-mx-1"
                 )}
               >
-                <OrganizationSwitcher
-                  afterSelectOrganizationUrl="/"
-                  hidePersonal
-                />
+                <ShieldIcon className="h-6 w-6 text-primary" />
+                {sidebar.open && <span>Digital Legacy</span>}
               </div>
             </SidebarMenuItem>
           </SidebarMenu>
@@ -215,16 +127,20 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
         <Search />
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Platform</SidebarGroupLabel>
+            <SidebarGroupLabel>Navigation</SidebarGroupLabel>
             <SidebarMenu>
-              {data.navMain.map((item) => (
+              {navMain.map((item) => (
                 <Collapsible
                   asChild
-                  defaultOpen={item.isActive}
+                  defaultOpen={item.items && isActive(item.url)}
                   key={item.title}
                 >
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild tooltip={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      tooltip={item.title}
+                      isActive={isActive(item.url)}
+                    >
                       <Link href={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
@@ -242,7 +158,10 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
                           <SidebarMenuSub>
                             {item.items?.map((subItem) => (
                               <SidebarMenuSubItem key={subItem.title}>
-                                <SidebarMenuSubButton asChild>
+                                <SidebarMenuSubButton
+                                  asChild
+                                  isActive={pathname === subItem.url}
+                                >
                                   <Link href={subItem.url}>
                                     <span>{subItem.title}</span>
                                   </Link>
@@ -258,60 +177,12 @@ export const GlobalSidebar = ({ children }: GlobalSidebarProperties) => {
               ))}
             </SidebarMenu>
           </SidebarGroup>
-          <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <SidebarGroupLabel>Projects</SidebarGroupLabel>
-            <SidebarMenu>
-              {data.projects.map((item) => (
-                <SidebarMenuItem key={item.name}>
-                  <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <item.icon />
-                      <span>{item.name}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <SidebarMenuAction showOnHover>
-                        <MoreHorizontalIcon />
-                        <span className="sr-only">More</span>
-                      </SidebarMenuAction>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent
-                      align="end"
-                      className="w-48"
-                      side="bottom"
-                    >
-                      <DropdownMenuItem>
-                        <FolderIcon className="text-muted-foreground" />
-                        <span>View Project</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuItem>
-                        <ShareIcon className="text-muted-foreground" />
-                        <span>Share Project</span>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>
-                        <Trash2Icon className="text-muted-foreground" />
-                        <span>Delete Project</span>
-                      </DropdownMenuItem>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                </SidebarMenuItem>
-              ))}
-              <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <MoreHorizontalIcon />
-                  <span>More</span>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            </SidebarMenu>
-          </SidebarGroup>
           <SidebarGroup className="mt-auto">
             <SidebarGroupContent>
               <SidebarMenu>
-                {data.navSecondary.map((item) => (
+                {navSecondary.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton asChild isActive={isActive(item.url)}>
                       <Link href={item.url}>
                         <item.icon />
                         <span>{item.title}</span>

@@ -136,6 +136,12 @@ importers:
 
   apps/app:
     dependencies:
+      '@clerk/nextjs':
+        specifier: ^6.36.0
+        version: 6.36.0(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      '@hookform/resolvers':
+        specifier: ^5.2.2
+        version: 5.2.2(react-hook-form@7.68.0(react@19.2.1))
       '@prisma/client':
         specifier: 7.1.0
         version: 7.1.0(prisma@7.1.0(@types/react@19.2.7)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)(typescript@5.9.3))(typescript@5.9.3)
@@ -205,11 +211,14 @@ importers:
       react-dom:
         specifier: 19.2.1
         version: 19.2.1(react@19.2.1)
+      react-hook-form:
+        specifier: ^7.68.0
+        version: 7.68.0(react@19.2.1)
       require-in-the-middle:
         specifier: 8.0.1
         version: 8.0.1
       zod:
-        specifier: ^4.1.13
+        specifier: link:@hookform/resolvers/zod
         version: 4.1.13
     devDependencies:
       '@repo/typescript-config':
@@ -14021,6 +14030,18 @@ snapshots:
       '@clerk/shared': 3.38.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
       react: 19.2.1
       react-dom: 19.2.1(react@19.2.1)
+      tslib: 2.8.1
+
+  '@clerk/nextjs@6.36.0(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':
+    dependencies:
+      '@clerk/backend': 2.25.1(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      '@clerk/clerk-react': 5.58.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      '@clerk/shared': 3.38.0(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      '@clerk/types': 4.101.5(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      next: 16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1)
+      react: 19.2.1
+      react-dom: 19.2.1(react@19.2.1)
+      server-only: 0.0.1
       tslib: 2.8.1
 
   '@clerk/nextjs@6.36.0(next@16.0.10(@opentelemetry/api@1.9.0)(react-dom@19.2.1(react@19.2.1))(react@19.2.1))(react-dom@19.2.1(react@19.2.1))(react@19.2.1)':

@@ -11,9 +11,187 @@ datasource db {
   relationMode = "prisma"
 }
 
-// This is a stub model.
-// Delete it and add your own Prisma models.
-model Page {
-  id   Int    @id @default(autoincrement())
-  name String
+// User profile extending Clerk user data
+model UserProfile {
+  id                 String   @id @default(cuid())
+  clerkUserId        String   @unique
+  fullName           String
+  dateOfBirth        DateTime?
+  email              String
+  phone              String?
+  countryOfResidence String?
+  onboardingComplete Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  trustedContacts TrustedContact[]
+  digitalAccounts DigitalAccount[]
+  documents       Document[]
+  mediaFolders    MediaFolder[]
+  mediaItems      MediaItem[]
+
+  @@index([clerkUserId])
+}
+
+// Trusted contacts who can access user's digital legacy
+model TrustedContact {
+  id           String           @id @default(cuid())
+  userId       String
+  user         UserProfile      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name         String
+  email        String?
+  phone        String?
+  relationship RelationshipType
+  role         ContactRole
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  documentAccess    DocumentAccess[]
+  mediaFolderAccess MediaFolderAccess[]
+  accountAccess     AccountAccess[]
+
+  @@index([userId])
+}
+
+enum RelationshipType {
+  FAMILY
+  FRIEND
+  COWORKER
+  LEGAL
+  OTHER
+}
+
+enum ContactRole {
+  EXECUTOR
+  RECIPIENT
+}
+
+// Digital accounts across various platforms
+model DigitalAccount {
+  id            String          @id @default(cuid())
+  userId        String
+  user          UserProfile     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category      AccountCategory
+  platformName  String
+  platformIcon  String?
+  username      String?
+  email         String?
+  actionOnDeath ActionOnDeath
+  transferToId  String?
+  notes         String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  accessList AccountAccess[]
+
+  @@index([userId])
+  @@index([category])
+}
+
+enum AccountCategory {
+  SOCIAL_MEDIA
+  EMAIL_COMMUNICATION
+  FINANCIAL
+  CRYPTO
+  SUBSCRIPTIONS
+  OTHER
+}
+
+enum ActionOnDeath {
+  DELETE
+  TRANSFER
+  MEMORIALIZE
+}
+
+// Documents uploaded by user
+model Document {
+  id          String   @id @default(cuid())
+  userId      String
+  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  fileUrl     String
+  fileType    String
+  fileSize    Int
+  isWill      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  accessList DocumentAccess[]
+
+  @@index([userId])
+  @@index([isWill])
+}
+
+// Folders for organizing media
+model MediaFolder {
+  id          String   @id @default(cuid())
+  userId      String
+  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  items      MediaItem[]
+  accessList MediaFolderAccess[]
+
+  @@index([userId])
+}
+
+// Individual media items (photos/videos)
+model MediaItem {
+  id        String       @id @default(cuid())
+  userId    String
+  user      UserProfile  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  folderId  String?
+  folder    MediaFolder? @relation(fields: [folderId], references: [id], onDelete: SetNull)
+  name      String
+  fileUrl   String
+  fileType  String
+  fileSize  Int
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+
+  @@index([userId])
+  @@index([folderId])
+}
+
+// Access control: Documents
+model DocumentAccess {
+  id         String         @id @default(cuid())
+  documentId String
+  document   Document       @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  contactId  String
+  contact    TrustedContact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@unique([documentId, contactId])
+  @@index([documentId])
+  @@index([contactId])
+}
+
+// Access control: Media folders
+model MediaFolderAccess {
+  id        String         @id @default(cuid())
+  folderId  String
+  folder    MediaFolder    @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  contactId String
+  contact   TrustedContact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@unique([folderId, contactId])
+  @@index([folderId])
+  @@index([contactId])
+}
+
+// Access control: Digital accounts
+model AccountAccess {
+  id        String         @id @default(cuid())
+  accountId String
+  account   DigitalAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  contactId String
+  contact   TrustedContact @relation(fields: [contactId], references: [id], onDelete: Cascade)
+
+  @@unique([accountId, contactId])
+  @@index([accountId])
+  @@index([contactId])
 }
